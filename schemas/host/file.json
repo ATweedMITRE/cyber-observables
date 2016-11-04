@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "file",
+  "description": "The File Object represents the properties of a file.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The value of this property MUST be `file`.",
+          "enum": [
+            "file"
+          ]
+        },
+        "extended_properties": {
+          "$ref": "../common/extended_properties_dictionary.json",
+          "description": "The File Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: ntfs-ext, raster-image-ext, pdf-ext, archive-ext, windows-pebinary-ext"
+        },
+        "hashes": {
+          "$ref": "../common/dictionary.json",
+          "description": "Specifies a dictionary of hashes for the file."
+        },
+        "size": {
+          "type": "integer",
+          "description": "Specifies the size of the file, in bytes, as a non-negative integer."
+        },
+        "name": {
+          "type": "string",
+          "description": "Specifies the name of the file."
+        },
+        "name_enc": {
+          "$ref": "../common/character-sets.json",
+          "description": "Specifies the observed encoding for the name of the file."
+        },
+        "name_bin": {
+          "type": "string",
+          "media": {
+            "binaryEncoding": "base64"
+          },
+          "description": "Specifies the name of the file as a base64-encoded string."
+        },
+        "magic_number_hex": {
+          "$ref": "../common/hex.json",
+          "description": "Specifies the hexadecimal constant ('magic number') associated with a specific file format that corresponds to the file, if applicable."
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "Specifies the MIME type name specified for the file, e.g., 'application/msword'."
+        },
+        "created": {
+          "$ref": "../common/timestamp.json",
+          "description": "Specifies the date/time the file was created."
+        },
+        "modified": {
+          "$ref": "../common/timestamp.json",
+          "description": "Specifies the date/time the file was last written to/modified."
+        },
+        "accessed": {
+          "$ref": "../common/timestamp.json",
+          "description": "Specifies the date/time the file was last accessed."
+        },
+        "parent_directory_ref": {
+          "$ref": "directory.json",
+          "description": "Specifies the parent directory of the file, as a reference to a Directory Object."
+        },
+        "oneOf": [
+          {
+            "$ref": "#/definitions/isEncrypted"
+          },
+          {
+            "$ref": "#/definitions/isNotEncrypted"
+          }
+        ],
+        "contains_refs": {
+          "type": "array",
+          "description": "Specifies a list of references to other Observable Objects contained within the file.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "content_ref": {
+          "type": "artifact.json",
+          "description": "Specifies the content of the file, represented as an Artifact Object."
+        }
+      }
+    }
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "hashes"
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "required": [
+            "file_name"
+          ]
+        },
+        {
+          "required": [
+            "file_name_bin"
+          ]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "isEncrypted": {
+      "type": "object",
+      "properties": {
+        "is_encrypted": {
+          "type": "boolean",
+          "description": "Specifies whether the file is encrypted.",
+          "enum": [
+            true
+          ]
+        },
+        "encryption_algorithm": {
+          "type": "string",
+          "description": "Specifies the name of the encryption algorithm used to encrypt the file. Open Vocabulary - encryption-algorithm-ov"
+        },
+        "decryption_key": {
+          "type": "string",
+          "description": "Specifies the decryption key used to decrypt the archive file."
+        }
+      },
+      "dependencies": {
+        "encryption_algorithm": [
+          "is_encrypted"
+        ],
+        "decryption_key": [
+          "is_encrypted"
+        ]
+      }
+    },
+    "isNotEncrypted": {
+      "type": "object",
+      "properties": {
+        "is_encrypted": {
+          "type": "boolean",
+          "description": "Specifies whether the file is encrypted.",
+          "enum": [
+            false
+          ]
+        }
+      },
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "encryption_algorithm"
+            ]
+          },
+          {
+            "required": [
+              "decryption_key"
+            ]
+          }
+        ]
+      }
+    },
+    "hash-algo-ov": {
+      "type": "string",
+      "enum": [
+        "MD5",
+        "MD6",
+        "RIPEMD-160",
+        "SHA-1",
+        "SHA-224",
+        "SHA-256",
+        "SHA-384",
+        "SHA-512",
+        "SHA3-224",
+        "SHA3-256",
+        "SHA3-384",
+        "SHA3-512",
+        "ssdeep",
+        "WHIRLPOOL"
+      ]
+    },
+    "encryption-algo-ov": {
+      "type": "string",
+      "enum": [
+        "AES128-ECB",
+        "AES128-CBC",
+        "AES128-CFB",
+        "AES128-COFB",
+        "AES128-CTR",
+        "AES128-XTS",
+        "AES128-GCM",
+        "Salsa20",
+        "Salsa8B",
+        "ChaCha20-Poly1305",
+        "ChaCha20",
+        "DES-CBC",
+        "3DES-CBC",
+        "DES-EBC",
+        "3DES-EBC",
+        "CAST128-CBC",
+        "CAST256-CBC",
+        "RSA",
+        "DSA"
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "extended_properties_dictionary",
+  "title": "file_extended_properties_dictionary",
   "description": "A dictionary captures a set of key/value pairs",
   "type": "object",
   "anyOf": [

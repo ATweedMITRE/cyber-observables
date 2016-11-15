@@ -17,7 +17,7 @@
           ]
         },
         "extended_properties": {
-          "$ref": "../common/extended_properties_dictionary.json",
+          "$ref": "../common/file-extended-properties-dictionary.json",
           "description": "The File Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: ntfs-ext, raster-image-ext, pdf-ext, archive-ext, windows-pebinary-ext"
         },
         "hashes": {

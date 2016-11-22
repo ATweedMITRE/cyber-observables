@@ -121,11 +121,14 @@
       "not": {
         "patternProperties": {
           "^windows-service-ext|windows-process-ext$": {
-            "$ref": "../common/dictionary.json",
-            "description": "Custom file extension"
+            "description": "Invalid custom file extension"
           }
         }
       }
     }
-  ]
+  ],
+  "additionalProperties": {
+    "$ref": "../common/dictionary.json",
+    "description": "Custom file extension"
+  }
 }

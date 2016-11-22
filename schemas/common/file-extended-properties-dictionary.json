@@ -210,13 +210,16 @@
       "not": {
         "patternProperties": {
           "^windows-pebinary-ext|archive-ext|pdf-ext|raster-image-ext|ntfs-ext$": {
-            "$ref": "../common/dictionary.json",
-            "description": "Custom file extension"
+            "description": "Invalid custom file extension"
           }
         }
       }
     }
   ],
+  "additionalProperties": {
+    "$ref": "../common/dictionary.json",
+    "description": "Custom file extension"
+  },
   "definitions": {
     "windows-pe-optional-header-type": {
       "type": "object",

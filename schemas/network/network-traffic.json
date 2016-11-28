@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "network-traffic",
+  "description": "The Network Traffic Object represents arbitrary network traffic that originates from a source and is addressed to a destination.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../common/core.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The value of this property MUST be `network-traffic`.",
+          "enum": [
+            "network-traffic"
+          ]
+        },
+        "extended_properties": {
+          "$ref": "../common/network-traffic-extended-properties-dictionary.json",
+          "description": "The Network Traffic Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: http-ext, tcp-ext, icmp-ext, socket-ext"
+        },
+        "start": {
+          "$ref": "../common/timestamp.json",
+          "description": "Specifies the date/time the network traffic was initiated, if known."
+        },
+        "src_ref": {
+          "anyOf": [
+            {
+              "$ref": "ipv4-addr.json"
+            },
+            {
+              "$ref": "ipv6-addr.json"
+            },
+            {
+              "$ref": "mac-addr.json"
+            },
+            {
+              "$ref": "domain-name.json"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": "Specifies the source of the network traffic, as a reference to one or more Observable Objects."
+        },
+        "dst_ref": {
+          "anyOf": [
+            {
+              "$ref": "ipv4-addr.json"
+            },
+            {
+              "$ref": "ipv6-addr.json"
+            },
+            {
+              "$ref": "mac-addr.json"
+            },
+            {
+              "$ref": "domain-name.json"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": "Specifies the destination of the network traffic, as a reference to one or more Observable Objects."
+        },
+        "protocols": {
+          "type": "array",
+          "description": "Specifies the protocols observed in the network traffic, along with their corresponding state.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "src_byte_count": {
+          "type": "integer",
+          "description": "Specifies the number of bytes sent from the source to the destination."
+        },
+        "dst_byte_count": {
+          "type": "integer",
+          "description": "Specifies the number of bytes sent from the destination to the source."
+        },
+        "src_packets": {
+          "type": "integer",
+          "description": "Specifies the number of packets sent from the source to the destination."
+        },
+        "dst_packets": {
+          "type": "integer",
+          "description": "Specifies the number of packets sent destination to the source."
+        },
+        "ipfix": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_-]{3,256}$": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "src_payload_ref": {
+          "$ref": "../host/artifact.json",
+          "description": "Specifies the bytes sent from the source to the destination."
+        },
+        "dst_payload_ref": {
+          "$ref": "../host/artifact.json",
+          "description": "Specifies the bytes sent from the source to the destination."
+        },
+        "encapsulates_refs": {
+          "type": "array",
+          "description": "Links to other network-traffic objects encapsulated by a network-traffic.",
+          "items": {
+            "$ref": "network-traffic.json"
+          }
+        },
+        "encapsulated_by_ref": {
+          "$ref": "network-traffic.json",
+          "description": "Links to another network-traffic object which encapsulates this object."
+        }
+      }
+    }
+  ],
+  "oneOf": [
+    {
+      "properties": {
+        "is_active": {
+          "type": "boolean",
+          "enum": [
+            "false"
+          ],
+          "description": "Indicates whether the network traffic is still ongoing."
+        },
+        "end": {
+          "$ref": "../common/timestamp.json",
+          "description": "Specifies the date/time the network traffic ended, if known."
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "is_active": {
+          "type": "boolean",
+          "enum": [
+            "true"
+          ],
+          "description": "Indicates whether the network traffic is still ongoing."
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

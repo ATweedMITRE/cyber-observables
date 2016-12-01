@@ -6,23 +6,16 @@
   "properties": {
     "type": {
       "type": "string",
-      "pattern": "^\\-?[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\\-?$",
-      "minLength": 3,
-      "maxLength": 250,
-      "description": "Indicates that this object is an Observable Object.",
-      "not": {
-        "enum": [
-          "action"
-        ]
-      }
+      "pattern": "^artifact|directory|file|mutex|process|software|user-account|windows-registry-key|x509-certificate|autonomous-system|domain-name|email-addr|email-message|ipv4-addr|ipv6-addr|mac-addr|network-traffic|url$",
+      "description": "Indicates that this object is an Observable Object. The value of this property MUST be a valid Observable Object type name."
     },
     "description": {
       "type": "string",
       "description": "Specifies a textual description of the Object."
     },
-    "extended_properties": {
+    "extensions": {
       "$ref": "../common/dictionary.json",
-      "description": "Specifies any extended properties of the object, as a dictionary."
+      "description": "Specifies any extensions of the object, as a dictionary."
     }
   },
   "patternProperties": {

@@ -16,23 +16,10 @@
             "directory"
           ]
         },
-        "oneOf": [
-          {
-            "path": {
-              "type": "string",
-              "description": "Specifies the path, as originally observed, to the directory on the file system."
-            }
-          },
-          {
-            "path_bin": {
-              "type": "string",
-              "media": {
-                "binaryEncoding": "base64"
-              },
-              "description": "Specifies the directory path as a base64-encoded string."
-            }
-          }
-        ],
+        "path": {
+          "type": "string",
+          "description": "Specifies the path, as originally observed, to the directory on the file system."
+        },
         "path_enc": {
           "$ref": "../common/character-sets.json",
           "description": "Specifies the observed encoding for the path."
@@ -57,7 +44,10 @@
           },
           "minItems": 1
         }
-      }
+      },
+      "required": [
+        "path"
+      ]
     }
   ]
 }

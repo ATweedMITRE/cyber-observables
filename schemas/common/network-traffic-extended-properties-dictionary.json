@@ -34,8 +34,16 @@
               "$ref": "../host/artifact.json",
               "description": "Specifies the data contained in the HTTP message body, if included."
             }
-          }
-        },
+          },
+          "required": [
+            "request_method",
+            "request_value"
+          ]
+        }
+      }
+    },
+    {
+      "patternProperties": {
         "^icmp-ext$": {
           "type": "object",
           "description": "The ICMP extension specifies a default extension for capturing network traffic properties specific to ICMP.",
@@ -53,7 +61,11 @@
             "icmp_type_hex",
             "icmp_code_hex"
           ]
-        },
+        }
+      }
+    },
+    {
+      "patternProperties": {
         "^socket-ext$": {
           "type": "object",
           "description": "The Network Socket extension specifies a default extension for capturing network traffic properties associated with network sockets.",
@@ -138,7 +150,11 @@
           "required": [
             "address_family"
           ]
-        },
+        }
+      }
+    },
+    {
+      "patternProperties": {
         "^tcp-ext$": {
           "type": "object",
           "description": "The TCP extension specifies a default extension for capturing network traffic properties specific to TCP.",

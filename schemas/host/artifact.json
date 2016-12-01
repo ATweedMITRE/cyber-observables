@@ -49,7 +49,7 @@
           "description": "The value of this property MUST be a valid URL that resolves to the unencoded content."
         },
         "hashes": {
-          "$ref": "../common/dictionary.json",
+          "$ref": "../common/hashes-type.json",
           "description": "Specifies a dictionary of hashes for the contents of the url or the payload_bin.  This MUST be provided when the url property is present."
         }
       },

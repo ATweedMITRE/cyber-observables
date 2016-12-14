@@ -33,7 +33,8 @@
           "description": "Specifies a reference to one or more autonomous systems (AS) that the IPv6 address belongs to.",
           "items": {
             "$ref": "as.json"
-          }
+          },
+          "minItems": 1
         }
       },
       "required": [

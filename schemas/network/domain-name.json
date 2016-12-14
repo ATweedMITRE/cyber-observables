@@ -17,14 +17,14 @@
           ]
         },
         "value": {
-          "type": "string", 
+          "type": "string",
           "description": "Specifies the value of the domain name."
         },
         "resolves_to_refs": {
           "type": "array",
           "description": "Specifies a list of references to one or more IP addresses or domain names that the domain name resolves to.",
           "items": {
-            "oneOf": [
+            "anyOf": [
               {
                 "$ref": "ipv4-addr.json"
               },

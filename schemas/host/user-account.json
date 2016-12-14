@@ -16,8 +16,8 @@
             "user-account"
           ]
         },
-        "extended_properties": {
-          "$ref": "../common/user-account-extended-properties-dictionary.json",
+        "extensions": {
+          "$ref": "../common/user-account-extensions-dictionary.json",
           "description": "The User Account Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: unix-account-ext."
         },
         "user_id": {
@@ -62,21 +62,21 @@
         },
         "password_last_changed": {
           "$ref": "../common/timestamp.json",
-          "description": ""
+          "description": "Specifies when the account password was last changed."
         },
         "account_first_login": {
           "$ref": "../common/timestamp.json",
-          "description": ""
+          "description": "Specifies when the account was first accessed."
         },
         "account_last_login": {
           "$ref": "../common/timestamp.json",
           "description": "Specifies when the account was last accessed."
         }
-      },
-      "required": [
-        "user_id"
-      ]
+      }
     }
+  ],
+  "required": [
+    "user_id"
   ],
   "definitions": {
     "account-type-ov": {

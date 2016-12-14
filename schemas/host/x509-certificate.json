@@ -21,7 +21,7 @@
           "description": "Specifies whether the certificate is self-signed, i.e., whether it is signed by the same entity whose identity it certifies."
         },
         "hashes": {
-          "$ref": "../common/dictionary.json",
+          "$ref": "../common/hashes-type.json",
           "description": "Specifies any hashes that were calculated for the entire contents of the certificate."
         },
         "version": {

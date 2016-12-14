@@ -16,12 +16,12 @@
             "file"
           ]
         },
-        "extended_properties": {
-          "$ref": "../common/file-extended-properties-dictionary.json",
+        "extensions": {
+          "$ref": "../common/file-extensions-dictionary.json",
           "description": "The File Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: ntfs-ext, raster-image-ext, pdf-ext, archive-ext, windows-pebinary-ext"
         },
         "hashes": {
-          "$ref": "../common/dictionary.json",
+          "$ref": "../common/hashes-type.json",
           "description": "Specifies a dictionary of hashes for the file."
         },
         "size": {
@@ -35,13 +35,6 @@
         "name_enc": {
           "$ref": "../common/character-sets.json",
           "description": "Specifies the observed encoding for the name of the file."
-        },
-        "name_bin": {
-          "type": "string",
-          "media": {
-            "binaryEncoding": "base64"
-          },
-          "description": "Specifies the name of the file as a base64-encoded string."
         },
         "magic_number_hex": {
           "$ref": "../common/hex.json",
@@ -67,14 +60,6 @@
           "$ref": "directory.json",
           "description": "Specifies the parent directory of the file, as a reference to a Directory Object."
         },
-        "oneOf": [
-          {
-            "$ref": "#/definitions/isEncrypted"
-          },
-          {
-            "$ref": "#/definitions/isNotEncrypted"
-          }
-        ],
         "contains_refs": {
           "type": "array",
           "description": "Specifies a list of references to other Observable Objects contained within the file.",
@@ -90,6 +75,14 @@
       }
     }
   ],
+  "oneOf": [
+    {
+      "$ref": "#/definitions/isEncrypted"
+    },
+    {
+      "$ref": "#/definitions/isNotEncrypted"
+    }
+  ],
   "anyOf": [
     {
       "required": [
@@ -97,17 +90,8 @@
       ]
     },
     {
-      "oneOf": [
-        {
-          "required": [
-            "file_name"
-          ]
-        },
-        {
-          "required": [
-            "file_name_bin"
-          ]
-        }
+      "required": [
+        "name"
       ]
     }
   ],

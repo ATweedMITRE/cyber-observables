@@ -70,7 +70,7 @@
         },
         "additional_header_fields": {
           "$ref": "../common/email-additional-header-fields.json",
-          "description": "Specifies any other header fields found in the email message, as a dictionary"
+          "description": "Specifies any other header fields found in the email message, as a dictionary."
         },
         "body": {
           "type": "string",

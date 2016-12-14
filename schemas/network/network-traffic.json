@@ -16,8 +16,8 @@
             "network-traffic"
           ]
         },
-        "extended_properties": {
-          "$ref": "../common/network-traffic-extended-properties-dictionary.json",
+        "extensions": {
+          "$ref": "../common/network-traffic-extensions-dictionary.json",
           "description": "The Network Traffic Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: http-ext, tcp-ext, icmp-ext, socket-ext"
         },
         "start": {
@@ -37,9 +37,6 @@
             },
             {
               "$ref": "domain-name.json"
-            },
-            {
-              "type": "object"
             }
           ],
           "description": "Specifies the source of the network traffic, as a reference to one or more Observable Objects."
@@ -57,12 +54,21 @@
             },
             {
               "$ref": "domain-name.json"
-            },
-            {
-              "type": "object"
             }
           ],
           "description": "Specifies the destination of the network traffic, as a reference to one or more Observable Objects."
+        },
+        "src_port": {
+          "type": "integer",
+          "description": "Specifies the source port used in the network traffic, as an integer. The port value MUST be in the range of 0 - 65535.",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "dst_port": {
+          "type": "integer",
+          "description": "Specifies the destination port used in the network traffic, as an integer. The port value MUST be in the range of 0 - 65535.",
+          "minimum": 0,
+          "maximum": 65535
         },
         "protocols": {
           "type": "array",
@@ -123,6 +129,27 @@
           "description": "Links to another network-traffic object which encapsulates this object."
         }
       }
+    }
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "protocols"
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "required": [
+            "src_ref"
+          ]
+        },
+        {
+          "required": [
+            "dst_ref"
+          ]
+        }
+      ]
     }
   ],
   "oneOf": [

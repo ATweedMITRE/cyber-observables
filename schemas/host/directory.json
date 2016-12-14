@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "directory",
-  "description": "The Directory Object represents the properties of a file system directory.",
+  "description": "The Directory Object represents the properties common to a file system directory.",
   "type": "object",
   "allOf": [
     {
@@ -40,7 +40,14 @@
           "type": "array",
           "description": "Specifies a list of references to other File and/or Directory Objects contained within the directory.",
           "items": {
-            "type": "string"
+            "anyOf": [
+              {
+                "$ref": "file.json"
+              },
+              {
+                "$ref": "directory.json"
+              }
+            ]
           },
           "minItems": 1
         }

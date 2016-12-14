@@ -24,7 +24,7 @@
                     "description": "Specifies the name of the alternate data stream."
                   },
                   "hashes": {
-                    "$ref": "../common/dictionary.json",
+                    "$ref": "../common/hashes-type.json",
                     "description": "Specifies a dictionary of hashes for the data contained in the alternate data stream."
                   },
                   "size": {
@@ -83,11 +83,11 @@
       "patternProperties": {
         "^pdf-ext$": {
           "type": "object",
-          "description": "The PDF file extension specifies a default extension for capturing properties specific to PDF files",
+          "description": "The PDF file extension specifies a default extension for capturing properties specific to PDF files.",
           "properties": {
             "version": {
               "type": "string",
-              "description": "Specifies the decimal version number of the string from the PDF header that specifies the version of the PDF specification to which the PDF file conforms. E.g., '1.4'"
+              "description": "Specifies the decimal version number of the string from the PDF header that specifies the version of the PDF specification to which the PDF file conforms. E.g., '1.4'."
             },
             "is_optimized": {
               "type": "boolean",
@@ -202,7 +202,10 @@
               },
               "minItems": 1
             }
-          }
+          },
+          "required": [
+            "pe_type"
+          ]
         }
       }
     },
@@ -346,7 +349,7 @@
           "description": "Specifies the number of data-directory entries in the remainder of the optional header."
         },
         "hashes": {
-          "$ref": "../common/dictionary.json",
+          "$ref": "../common/hashes-type.json",
           "description": "Specifies any hashes that were computed for the optional header."
         }
       }
@@ -368,18 +371,21 @@
           "description": "Specifies the calculated entropy for the section, as calculated using the Shannon algorithm."
         },
         "hashes": {
-          "$ref": "../common/dictionary.json",
+          "$ref": "../common/hashes-type.json",
           "description": "Specifies any hashes computed over the section."
         }
       },
-      "windows-pebinary-type-ov": {
-        "type": "string",
-        "enum": [
-          "exe",
-          "dll",
-          "sys"
-        ]
-      }
+      "required": [
+        "name"
+      ]
+    },
+    "windows-pebinary-type-ov": {
+      "type": "string",
+      "enum": [
+        "exe",
+        "dll",
+        "sys"
+      ]
     }
   }
 }

@@ -16,8 +16,8 @@
             "process"
           ]
         },
-        "extended_properties": {
-          "$ref": "../common/process-extended-properties-dictionary.json",
+        "extensions": {
+          "$ref": "../common/process-extensions-dictionary.json",
           "description": "The Process Object defines the following extensions. In addition to these, producers MAY create their own. Extensions: windows-process-ext, windows-service-ext."
         },
         "is_hidden": {
@@ -54,9 +54,9 @@
         },
         "opened_connection_refs": {
           "type": "array",
-          "description": "Specifies the list of network connections opened by the process, as a reference to one or more Network Connection Objects.",
+          "description": "Specifies the list of network connections opened by the process, as a reference to one or more Network Traffic Objects.",
           "items": {
-            "$ref": "../network/network-connection.json"
+            "$ref": "../network/network-traffic.json"
           },
           "minItems": 1
         },
